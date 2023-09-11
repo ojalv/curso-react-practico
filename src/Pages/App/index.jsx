@@ -1,4 +1,5 @@
 import { useRoutes, BrowserRouter } from 'react-router-dom'
+import { ShppingCartProvider } from '../../Context/'
 import { Navbar } from '../../Components/Navbar'
 import Home from '../Home'
 import MyAccount from '../MyAccount'
