@@ -1,10 +1,11 @@
-// eslint-disable-next-line no-unused-vars
+import { ShoppingBagIcon } from "@heroicons/react/24/solid";
+
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
 const Navbar = () => {
   const activeStyle = "underline underline-offset-4";
-  const context = useContext(ShoppingCartContext)
+  const context = useContext(ShoppingCartContext);
   return (
     <nav className=" bg-slate-200 flex justify-between items-center fixed w-full z-10 py-5 px-8 text-sm font-light top-0">
       <ul className="flex items-center gap-3">
@@ -128,8 +129,11 @@ const Navbar = () => {
               isPending ? undefined : isActive ? undefined : undefined
             }
           >
-            🛒 {context.count}
           </NavLink>
+        </li>
+        <li className=" flex items-center">
+          <ShoppingBagIcon className="h-6 w-6 text-black"/> 
+          <li>{context.count}</li>
         </li>
       </ul>
     </nav>
