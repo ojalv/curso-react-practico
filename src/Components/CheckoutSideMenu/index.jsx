@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
+import { OrderCard } from '../OrderCard'
 import './syles.css'
 
 const CheckoutSideMenu = () => {
@@ -8,28 +9,29 @@ const CheckoutSideMenu = () => {
 
   return (
     <aside
-      className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white z-10`}>
+      className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} overflow-y-scroll checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white z-10`}>
       <div className='flex justify-between items-center p-6'>
         <h2 className='font-medium text-xl'>My Order</h2>
         <div>
           <XMarkIcon
             className='h-6 w-6 text-black cursor-pointer'
-            onClick={() => context.closeCheckoutSideMenu()}></XMarkIcon>
+            onClick={() => context.closeCheckoutSideMenu()}/>
         </div>
       </div>
-      <figure className='px-6'>
-        <img
-          className='w-full h-full rounded-lg'
-          src={context.productToShow.images ? context.productToShow.images[0]: ''}
-          alt={context.productToShow.title} />
-      </figure>
-      <p className='flex flex-col p-6'>
-        <span className='font-medium text-2xl mb-2'>${context.productToShow.price}</span>
-        <span className='font-medium text-md'>${context.productToShow.title}</span>
-        <span className='font-light text-sm'>${context.productToShow.description}</span>
-      </p>
+      <div className=' px-1 py-1 w-full h-1'>
+      {
+          context.cartProducts.map((product) => (
+            <OrderCard key={product.id} title= {product.title} imageUrl={product.images[0]}  price={product.price}/>
+          ))
+        }
+      </div>
     </aside>
   )
 }
+// {
+//     items?.map((item) => (
+//       <OrderCard key={item.id} data={item}/>
+//     ))
+//   }
 
 export {CheckoutSideMenu}
