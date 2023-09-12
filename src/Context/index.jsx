@@ -1,31 +1,31 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react'
 
-const ShoppingCartContext = createContext();
+export const ShoppingCartContext = createContext()
 
 // eslint-disable-next-line react/prop-types
-const ShoppingCartProvider = ({ children }) => {
-  const [count, setCount] = useState(0);
-  //console.log("COUNT:", count);
-  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+export const ShoppingCartProvider = ({children}) => {
+  // Shopping Cart · Increment quantity
+  const [count, setCount] = useState(0)
 
+  // Product Detail · Open/Close
+  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
   const openProductDetail = () => setIsProductDetailOpen(true)
   const closeProductDetail = () => setIsProductDetailOpen(false)
 
+  // Product Detail · Show product
+  const [productToShow, setProductToShow] = useState({})
 
   return (
-    <ShoppingCartContext.Provider
-      value={{
-        count,
-        setCount,
-        openProductDetail,
-        closeProductDetail,
-        isProductDetailOpen
-      }}
-    >
+    <ShoppingCartContext.Provider value={{
+      count,
+      setCount,
+      openProductDetail,
+      closeProductDetail,
+      isProductDetailOpen,
+      productToShow,
+      setProductToShow
+    }}>
       {children}
     </ShoppingCartContext.Provider>
-  );
-};
-
-export { ShoppingCartContext };
-export { ShoppingCartProvider };
+  )
+}
