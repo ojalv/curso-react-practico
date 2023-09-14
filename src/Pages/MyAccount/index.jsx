@@ -8,4 +8,4 @@ function MyAccount() {
   );
 }
 
-export default MyAccount;
+export {MyAccount};
